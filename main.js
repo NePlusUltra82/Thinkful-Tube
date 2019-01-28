@@ -27,7 +27,8 @@ $(function () {
 
         $('.js-search-input').val('');
 
-        $('.js-results').html(`
+        $('.js-results').html(
+        `
             <div>
                 <ul>
                     ${data.items.map(item => (
