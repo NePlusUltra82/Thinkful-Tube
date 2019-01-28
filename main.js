@@ -1,16 +1,44 @@
 
+$(function () {
+
+    const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
+
+    const accessKey = 'AIzaSyD_cr9i_SVDlO-sz0dC97hDrSdvj4bS_Vk';
 
 
-
-
-
-function searchSubmit(){
     $('.js-search-form').submit(event => {
         event.preventDefault();
         const searchItem = $('.js-search-input').val();
-        console.log(searchItem);
+        getApiResults(searchItem, displayResults);
     });
-}
 
+    function getApiResults(query, callback) {
+        const options = {
+            q: `${query} in:name`,
+            part: 'snippet',
+            key: `${accessKey}`,
+            per_page: 5
+        }
+        $.getJSON(YOUTUBE_SEARCH_URL, options, callback);
+    }
 
-$(searchSubmit);
+    function displayResults (data) {
+        //console.log(data.items);
+        
+        $('.js-results').html(`
+            <div>
+                <h1>Results:</h1>
+                <ul>
+                    ${data.items.map(item => (
+                        `<div class="container">
+                            <h2 class="results">${item.snippet.title}</h2>
+                            <h2 class="results">Channel: <a target="_blank" href="https://www.youtube.com/channel/${item.snippet.channelId}" >${item.snippet.channelTitle}</a></h2>
+                            <li class="results"><a target="_blank" href="https://www.youtube.com/watch?v=${item.id.videoId}" ><img src="${item.snippet.thumbnails.high.url}"/></a></li>
+                         </div>   
+                        `
+                    )).join(' ')}
+                </ul>
+            </div>
+        `);
+    }
+});
