@@ -23,16 +23,17 @@ $(function () {
     }
 
     function displayResults (data) {
-        //console.log(data.items);
-        
+        //console.log(data);
+
+        $('.js-search-input').val('');
+
         $('.js-results').html(`
             <div>
-                <h1>Results:</h1>
                 <ul>
                     ${data.items.map(item => (
                         `<div class="container">
                             <h2 class="results">${item.snippet.title}</h2>
-                            <h2 class="results">Channel: <a target="_blank" href="https://www.youtube.com/channel/${item.snippet.channelId}" >${item.snippet.channelTitle}</a></h2>
+                            <h2 class="results">More From This Channel: <a target="_blank" href="https://www.youtube.com/channel/${item.snippet.channelId}" >${item.snippet.channelTitle}</a></h2>
                             <li class="results"><a target="_blank" href="https://www.youtube.com/watch?v=${item.id.videoId}" ><img src="${item.snippet.thumbnails.high.url}"/></a></li>
                          </div>   
                         `
