@@ -35,8 +35,13 @@ ul {
    list-style-type: none; 
 }
 
-.results {
+.results, h1, h2 {
     text-align: center;
+    color: black;
+}
+
+h1, h2{
+    color: white;
 }
 
 .container {
