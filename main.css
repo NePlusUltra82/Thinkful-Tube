@@ -31,6 +31,14 @@ button {
     color: white;
 }
 
+a:visited {
+    color: white;
+}
+
+a {
+    color: yellow;
+}
+
 ul {
    list-style-type: none; 
 }

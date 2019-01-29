@@ -34,16 +34,18 @@ $(function () {
                 <div>
                     <h1>The Results are in!</h1> 
                     <h2>Total Results: ${data.pageInfo.totalResults} </h2>
-                    <ul>
+        
                         ${data.items.map(item => (
                         `   <div class="container">
                                 <h2 class="results">${item.snippet.title}</h2>
                                 <h2 class="results">More From This Channel: <a target="_blank" href="https://www.youtube.com/channel/${item.snippet.channelId}" >${item.snippet.channelTitle}</a></h2>
+                                <ul>
                                 <li class="results"><a target="_blank" href="https://www.youtube.com/watch?v=${item.id.videoId}" ><img alt='video thumbnail' src="${item.snippet.thumbnails.high.url}"/></a></li>
+                                </ul>
                             </div>   
                         `
                         )).join(' ')}
-                    </ul>
+    
                 </div>
             `
         );
